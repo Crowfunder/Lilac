@@ -1,0 +1,36 @@
+﻿boring,nudne
+suicide,samobĂłjstwo
+only,tylko
+ask,zapytaÄ‡
+evil,zĹ‚o
+want,chcieÄ‡
+some,trochÄ™
+man,czĹ‚owiek
+just a little,tylko trochÄ™
+with,z
+butter,masĹ‚o
+can,mogÄ™
+try,prĂłbowaÄ‡
+later,pĂłĹşniej
+sometimes,czasami
+something,coĹ›
+any,kaĹĽdy jakiĹ›
+about,o
+what about you?,a ty?
+again,znowu
+gave us,daĹ‚ nam
+our,nasz
+repeat,powtĂłrzyÄ‡
+still,ciÄ…gle
+evening,wieczĂłr
+morning,poranek
+just,wĹ‚aĹ›nie
+proud,dumny
+pride,duma
+weird,dziwne
+learn,uczyÄ‡ siÄ™ czegoĹ›
+teach,uczyÄ‡ kogoĹ›
+myself,sobie
+notice,zauwaĹĽyÄ‡
+forget,zapomnieÄ‡
+make,robiÄ‡
