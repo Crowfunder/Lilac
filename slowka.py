@@ -1,9 +1,12 @@
 # -*- coding: UTF-8 -*-
 # by Crowfunder
-# beta v0.2 HEADLESS (Prevented words repetition, added logging)
+# beta v0.3 HEADLESS (Added matplotlib graph generation, added dates to logs, added logs failsafe in case the logfile is too big)
 # WARNING: Compiled on Windows does shit with diacritic marks. (FUCK YOU MICROSOFT FOR NOT USING NORMAL GODDAMN ENCODINGS)
 # Copyright my ass.
-import csv, random
+import random, os, csv
+from time import localtime, strftime
+from datetime import date
+from matplotlib import pyplot as plt
     
 def csv_parse(fname):
     try:
@@ -27,13 +30,39 @@ def comparator(query, question, dictionary):
     elif question in list(dictionary.values()):  #is in pl
         return query == pl_to_en(dictionary, question)
     
-# Logs player's scores in csv-readable format. Will be used for graph creation. 
+def get_date():
+    hour = localtime()
+    hour = strftime("%H:%M:%S")
+    return hour
+    
+# Logs player's scores in csv readable format. Will be used for graph creation.
 def logger(score, counter):
-    ratio = str(round(score/counter, 1))
+    ratio = round(score/counter, 1)
+    today = get_date()
     with open("log.log", "a+") as file:
-        file.write(f"{score},{counter},{ratio}\n")
+        if os.stat("log.log").st_size == 0:
+            file.write("score,max,ratio,date\n")
+        file.write(f"{score},{counter},{ratio},{today}\n")
         
-def flush_log():
+def log_failsafe():
+    if sum(1 for line in open('log.log')) > 100:
+        log_flush()
+
+def graph(logfile):
+    with open(logfile, "r") as file:
+        x = [row["date"] for row in csv.DictReader(file)]
+    with open(logfile, "r") as file:
+        y = [row["ratio"] for row in csv.DictReader(file)]
+    y = [float(i) for i in y]
+    plt.plot(x,y)
+    plt.gcf().autofmt_xdate()
+    plt.title("Twoje Wyniki")
+    plt.xlabel("Czas")
+    plt.ylabel("Trafione odpowiedzi/pytania")
+    plt.show()
+    
+
+def log_flush():
     open('log.log', 'w').close()
 
 def random_en(dictionary, question):
@@ -120,6 +149,7 @@ def debug(dictionary):
     percent = str(round((score/counter)*100, 1)) + "%"
     logger(score, counter)
     print(f"Gratulacje! Masz {score} na {counter} punktów! ({percent})")
+    graph("log.log")
 
 def main():
     words = csv_parse("slownik.txt")
