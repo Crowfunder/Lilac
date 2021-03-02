@@ -124,6 +124,9 @@ def graph(logfile):
     layout = [[sg.Text('Tworzenie wykresu w toku...')],
               [sg.ProgressBar(1, orientation='h', size=(20, 20), key='progress')],
              ]
+    if not os.path.isfile(logfile):
+        file = open(logfile, "w")
+        file.close()
     window = sg.Window('Lilac', layout).Finalize()
     progress_bar = window.FindElement('progress')
     progress_bar.UpdateBar(0, 7)
