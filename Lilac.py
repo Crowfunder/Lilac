@@ -1,5 +1,5 @@
 # by Crowfunder
-# beta v0.4.1 (Working GUI, FIXED ENCODING (WAHOOO). Yeeted out the debug() (finally). First non pre-relase release.)
+# beta v0.4.2 (Fixed Minor Bugs)
 # Copyright my ass but also the MIT License
 # Github: https://github.com/Crowfunder/Lilac
 import random, os, csv, traceback
@@ -85,7 +85,7 @@ def menu():
       [sg.Button("Ustawienia", size=(20,1), font="Fixedsys")],
       [sg.Button("Wyjdź", size=(20,1), button_color=("white", "red"), font="Fixedsys")],
       [sg.Text('_'*30)],
-      [sg.Text("Made with love by Crowfunder.\nLogo by Nadia <3\n________________\nv0.4.1 beta", 
+      [sg.Text("Made with love by Crowfunder.\nLogo by Nadia <3\n________________\nv0.4.2 beta", 
                font=["Courier", 8], justification='c')]
     ]
     window = sg.Window('Lilac', layout, element_justification='c').Finalize()
@@ -189,6 +189,8 @@ def get_counter(maxword):
                 break
             except ValueError:
                 sg.popup_error("Zły wybór!  Musi być liczbą!", font="Fixedsys")
+            except TypeError:
+                quit()
         if counter > maxword or counter <= 0:
             sg.popup_error(f"Liczba nie może być większa niż {maxword} i mniejsza lub równa 0!", font="Fixedsys")
         else:
@@ -303,7 +305,7 @@ def menu_settings(settings, default_settings, settings_fname):
               
 def csv_parse(fname):
     try:
-        with open(fname, encoding="utf-8") as file:
+        with open(fname, encoding="utf-8-sig") as file:
             words = {str(num):col for num,col in csv.reader(file)}
         if words == None:
             csv_parse(get_dict_file())
@@ -393,4 +395,4 @@ if __name__ == '__main__':
 #     percent = str(round((score/counter)*100, 1)) + "%"
 #     logger(score, counter)
 #     print(f"Gratulacje! Masz {score} na {counter} punktów! ({percent})")
-#     gui.graph("log.log")
+#     graph("log.log")
