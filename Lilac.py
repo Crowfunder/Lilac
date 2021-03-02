@@ -1,5 +1,5 @@
 # by Crowfunder
-# beta v0.4 (Working GUI, FIXED ENCODING (WAHOOO). Yeeted out the debug() (finally). First non pre-relase release.)
+# beta v0.4.1 (Working GUI, FIXED ENCODING (WAHOOO). Yeeted out the debug() (finally). First non pre-relase release.)
 # Copyright my ass but also the MIT License
 # Github: https://github.com/Crowfunder/Lilac
 import random, os, csv, traceback
@@ -85,7 +85,7 @@ def menu():
       [sg.Button("Ustawienia", size=(20,1), font="Fixedsys")],
       [sg.Button("Wyjdź", size=(20,1), button_color=("white", "red"), font="Fixedsys")],
       [sg.Text('_'*30)],
-      [sg.Text("Made with love by Crowfunder.\nLogo by Nadia <3\n________________\nv0.4 beta", 
+      [sg.Text("Made with love by Crowfunder.\nLogo by Nadia <3\n________________\nv0.4.1 beta", 
                font=["Courier", 8], justification='c')]
     ]
     window = sg.Window('Lilac', layout, element_justification='c').Finalize()
